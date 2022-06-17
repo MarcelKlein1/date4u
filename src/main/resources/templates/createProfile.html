@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Date4u - Profil erstellen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <style>
+    .headLogin {
+      background-color: #9F40DB;
+      padding: 5px 5px 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      min-height: 40px;
+      color: white;
+    }
+    .headLogin a {
+      color: white;
+    }
+    .noProfile {
+      background-color: #DB0044;
+      padding: 5px 5px 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      min-height: 40px;
+      color: white;
+      text-align: center;
+    }
+    .noProfile a {
+      color: white;
+    }
+  </style>
+</head>
+<body style="background-color: #FADCF5">
+<div class="container" style="background-color: #BB82DA; padding: 10px;margin-top: 20px;">
+  <div class="jumbotron">
+    <h1 class="display-4">Profil erstellen</h1>
+  </div>
+  <div>
+    <form data-th-action="@{/saveProfile}" id="profileForm" method="post" class="form-inline">
+      <div data-th-object="${profile}">
+        <input type="text" data-th-field="*{id}" hidden>
+        <div class="mb-3">
+          <label for="nicknameInput" class="form-label">Nickname</label>
+          <input type="text" data-th-field="*{nickname}" id="nicknameInput"
+                 class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="birthdateInput" class="form-label">Geburtsdatum</label>
+          <input type="date" data-th-field="*{birthdate}" id="birthdateInput"
+                 class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="hornlengthInput" class="form-label">Hornlänge</label>
+          <input type="text" data-th-field="*{hornlength}" id="hornlengthInput"
+                 class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Geschlecht</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" data-th-field="*{gender}" name="maleGender" id="maleGender" value="0">
+            <label class="form-check-label" for="maleGender">männlich</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" data-th-field="*{gender}" name="femaleGender" id="femaleGender" value="1">
+            <label class="form-check-label" for="femaleGender">weiblich</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" data-th-field="*{gender}" name="bothGender" id="bothGender" value="2">
+            <label class="form-check-label" for="bothGender">divers</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Interessiert an</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" data-th-field="*{attractedToGender}" name="attracetedToMaleGender" id="attracetedToMaleGender" value="0">
+            <label class="form-check-label" for="attracetedToMaleGender">Männern</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" data-th-field="*{attractedToGender}" name="attractedToFemaleGender"
+                   id="attractedToFemaleGender" value="1">
+            <label class="form-check-label" for="attractedToFemaleGender">Frauen</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" data-th-field="*{attractedToGender}" name="attractedToBothGender" id="attractedToBothGender" value="2">
+            <label class="form-check-label" for="attractedToBothGender">beides</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" data-th-field="*{attractedToGender}" name="attractedToNoGender" id="attractedToNoGender" value="">
+            <label class="form-check-label" for="attractedToNoGender">niemanden</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="descriptionInput" class="form-label">Beschreibung</label>
+          <textarea cols="35" rows="4" data-th-field="*{description}" id="descriptionInput"
+                    class="form-control">
+          </textarea>
+        </div>
+        <input type="text" data-th-field="*{lastseen}" hidden>
+      </div>
+      <button type="submit" class="btn btn-light">Speichern</button>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

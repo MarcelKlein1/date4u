@@ -1,0 +1,94 @@
+1653988252550:help
+1653988415956:to-Lowercase ABC
+1653988607912:freeDiskSpace
+1653988610348:help
+1653988623509:free-disk-space
+1653988632021:minimum-free-disk-space
+1653988649986:free-disc-space
+1653988682686:free-disk-space
+1653988716880:help
+1653988721776:to-lowercase ABC
+1653988816938:help
+1653988849136:free-disk-space
+1653990493571:free-dik-space
+1653990498378:free-disk-space
+1653991066926:show-photo unicorn030
+1653991315538:help
+1653991681682:show-photo unicorn030
+1653992653918:help
+1653992753052:exit
+1653992968817:help
+1653992976727:quit
+1653994913461:help
+1653994957071:quit
+1653995037816:exit
+1653995082637:help
+1653995091113:quit
+1653995397798:help
+1653995402401:quit
+1653997321809:help
+1653997351376:upload-photo 'C:/Users/User/Desktop/neues-bild.jpg'
+1653997432301:upload-photo 'C:\\Users\\maklein\\Downloads\\unicorns\\img\\unicorn001.jpg'
+1653997439709:upload-photo
+1653997462981:upload-photo 'C:\\Users\\maklein\\Downloads\\unicorns\\img\\unicorn001'
+1653997491599:upload-photo 'C:/Users/User/Desktop/neues-bild'
+1653997747654:@Configuration
+1653997747670:class SupplierConfiguration {
+1653997747685:}
+1653997747690:@Component
+1653997747698:class FastThumbnailSupplier implements Supplier<AwtNearestNeighborThumbnail>{
+1653997755303:}help
+1653997769797:upload-photo 'C:/Users/User/Desktop/neues-bild.jpg'
+1653997776301:upload-photo 'C:/Users/User/Desktop/neues-bild'
+1653997784872:stacktrace
+1653997809283:help
+1653997838024:show-photo "C:\\Users\\maklein\\fs\\unicorn030.jpg"
+1653998064071:upload-photo 'C:/Users/User/Desktop/neues-bild.jpg'
+1653998120049:quit
+1653998432278:upload-photo 'C:/Users/User/Desktop/neues-bild.jpg'
+1653998435992:quit
+1653998834941:upload-photo 'C:/Users/maklein/Desktop/neues-bild.jpg'
+1654071417644:exit
+1654078209459:help
+1654078321603:hornlength FillmoreFat
+1654078423500:help
+1654078430765:hornlength FillmoreFat
+1654078535717:hornlength EddieBull
+1654078540514:hornlength test
+1654084378371:help
+1654084431121:find-profile EddieBull
+1654084442200:help
+1654084450185:find-profile
+1654084999070:help
+1654085005992:find-profile 1
+1654085056374:find-profile 22222
+1654085188192:find-profile 2222
+1654085194942:find-profile 1
+1654085342621:find-profile 2
+1654085348856:find-profile 10
+1654086764963:find-profile 1
+1654088765099:help
+1654088775275:find-hornlength 1 10
+1654091790572:quit
+1654092709963:help
+1654092727698:photos 1
+1654092743570:photos 101
+1654092756582:photos 030
+1654092761179:photos 2
+1654092766812:photos 3
+1654092775897:photos 4
+1654093018183:photos 1
+1654093023666:photos 2
+1654093038156:photos 1
+1654093344557:photos 2
+1654093908113:photos 1
+1654156572089:help
+1654156807176:exit
+1654163902703:help
+1654163921767:upload-photo "./unicorn030.jpg"
+1654163935784:upload-photo unicorn030
+1654163940085:quit
+1654164720704:upload-photo C:\\Users\\maklein\\Downloads\\unicorns\\img\\Unicorn002.jpg
+1654164745010:upload-photo C:/Users/maklein/Downloads/unicorns/img/Unicorn002.jpg
+1654164781359:upload-photo C:/Users/maklein/Downloads/unicorns/img/Unicorn002
+1654164841430:upload-photo C:/Users/maklein/Downloads/unicorns/img/Unicorn001.jpg
