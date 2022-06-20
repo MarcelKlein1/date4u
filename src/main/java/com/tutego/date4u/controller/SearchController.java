@@ -39,9 +39,11 @@ public class SearchController {
 
         LocalDate currentDate = LocalDate.now();
 
+        //filtering Profiles by hornlength and gender
         Iterable<Profile> profiles = profileRepository.findProfileByGenderAndHornlength(gender, minHorn, maxHorn);
         List<Profile> profileListWithMatchingAge = new ArrayList<>();
 
+        //calculating the age of profiles and filter them
         for (Profile profile : profiles) {
             if (Period.between(profile.getBirthdate(), currentDate).getYears() >= minAge &&
                     Period.between(profile.getBirthdate(), currentDate).getYears() <= maxAge) {

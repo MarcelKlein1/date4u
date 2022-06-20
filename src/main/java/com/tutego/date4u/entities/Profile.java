@@ -11,10 +11,12 @@ import java.util.List;
 @Entity
 @Table(name = "profile")
 @Access(AccessType.FIELD)
+@Embeddable
 public class Profile {
 
     public static final int FEE = 1;
     public static final int MAA = 2;
+    private static final long serialVersionUID = 8325886845899123834L;
     @OneToMany(
             mappedBy = "profile",
             fetch = FetchType.EAGER)
@@ -43,9 +45,6 @@ public class Profile {
 
     @Column(name = "lastseen")
     private LocalDateTime lastseen;
-
-    @Embedded
-    private Likes likes;
 
     public Profile() {
     }

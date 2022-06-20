@@ -32,11 +32,12 @@ public class PhotoController {
     PhotoRepository photoRepository;
 
     @PostMapping("/uploadPhoto")
-    public String uploadPhoto(Model model, Photo photo, Principal principal, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public String uploadPhoto(Photo photo, Principal principal, @RequestParam("image") MultipartFile multipartFile) throws IOException {
         String filename = UUID.randomUUID().toString();
 
         Profile profile = unicornRepository.findByEmail(principal.getName()).getProfile();
 
+        //Saving Photo; Saving as profile photo if there was none before
         photo.setName(filename);
         photo.setProfile(profile);
         photo.setProfilePhoto(photoRepository.findByProfilePhoto(profile) == null);
@@ -54,9 +55,9 @@ public class PhotoController {
     public String editProfilePhoto(Principal principal, Model model) {
         List<String> allPhotoListNames = new ArrayList<>();
 
-        model.addAttribute("user", unicornRepository.findByEmail(principal.getName()).getProfile().getId());
-
         Profile profile = unicornRepository.findByEmail(principal.getName()).getProfile();
+
+        model.addAttribute("user", profile.getId());
 
         if (photoRepository.findByProfile(profile) != null) {
             photoRepository.findByProfile(profile).forEach(photo -> allPhotoListNames.add(photo.getName()));
@@ -72,9 +73,10 @@ public class PhotoController {
     }
 
     @PostMapping("/saveNewProfilePhoto")
-    public String saveNewProfilePhoto(Principal principal, Model model, Photo photo, String photoName) {
+    public String saveNewProfilePhoto(Principal principal, String photoName) {
         Profile profile = unicornRepository.findByEmail(principal.getName()).getProfile();
 
+        //The old profile photo is no longer a profile photo
         Photo oldProfilePhoto = photoRepository.findByProfilePhoto(profile);
         oldProfilePhoto.setProfile(oldProfilePhoto.getProfile());
         oldProfilePhoto.setProfilePhoto(false);
@@ -82,6 +84,7 @@ public class PhotoController {
         oldProfilePhoto.setCreated(oldProfilePhoto.getCreated());
         photoRepository.save(oldProfilePhoto);
 
+        //saving the new profile photo as a profile photo
         Photo newProfilePhoto = photoRepository.findPhotoByName(photoName);
         newProfilePhoto.setProfilePhoto(true);
         newProfilePhoto.setCreated(newProfilePhoto.getCreated());

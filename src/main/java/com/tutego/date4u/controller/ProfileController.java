@@ -74,7 +74,7 @@ public class ProfileController {
 
     //Create a new Profile
     @RequestMapping(value = "/createProfile", method = RequestMethod.GET)
-    public String profileCreation(Model model, Profile profile, Unicorn unicorn, Principal principal) {
+    public String profileCreation(Principal principal, Unicorn unicorn, Profile profile) {
         if (principal != null) {
             if (unicornRepository.findByEmail(principal.getName()).getProfile() != null) {
                 return "/index";
@@ -86,7 +86,7 @@ public class ProfileController {
 
     //Save the new Profile
     @RequestMapping(value = "/saveProfile", method = RequestMethod.POST)
-    public String profileCompleted(@ModelAttribute("profile") Profile profile, Model model, Unicorn unicorn, Principal principal) {
+    public String profileCompleted(@ModelAttribute("profile") Profile profile, Principal principal) {
 
         unicornRepository.findByEmail(principal.getName()).setProfile(profile);
         profileRepository.save(profile);
@@ -96,7 +96,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
-    public String updateProfile(@ModelAttribute("profile") Profile profile, Model model, Principal principal) {
+    public String updateProfile(@ModelAttribute("profile") Profile profile) {
 
         profile.setId(profile.getId());
         profile.setNickname(profile.getNickname());

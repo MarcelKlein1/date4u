@@ -10,15 +10,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
+@Controller
 public class UnicornController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class UnicornController {
 
     //Register a new unicorn
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registration(Model model, Unicorn unicorn, Principal principal) {
+    public String registration(Principal principal, Unicorn unicorn) {
         if (principal != null) {
             return "/index";
         }
@@ -45,7 +45,7 @@ public class UnicornController {
 
     //Save the unicorn
     @RequestMapping(value = "/saveUnicorn", method = RequestMethod.POST)
-    public String unicornCompleted(@ModelAttribute("unicorn") Unicorn unicorn, Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String unicornCompleted(@ModelAttribute("unicorn") Unicorn unicorn, HttpServletRequest request) {
         unicorn.setPassword("{noop}" + unicorn.getPassword());
         unicornRepository.save(unicorn);
 
