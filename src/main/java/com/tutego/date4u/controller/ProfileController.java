@@ -1,8 +1,10 @@
 package com.tutego.date4u.controller;
 
+import com.tutego.date4u.entities.Like;
 import com.tutego.date4u.entities.Profile;
 import com.tutego.date4u.entities.ProfileFormData;
 import com.tutego.date4u.entities.Unicorn;
+import com.tutego.date4u.repositories.LikeRepository;
 import com.tutego.date4u.repositories.PhotoRepository;
 import com.tutego.date4u.repositories.ProfileRepository;
 import com.tutego.date4u.repositories.UnicornRepository;
@@ -27,6 +29,9 @@ public class ProfileController {
     UnicornRepository unicornRepository;
     @Autowired
     PhotoRepository photoRepository;
+
+    @Autowired
+    LikeRepository likeRepository;
 
     //Profilepage
     @RequestMapping("/profile/{id}")
@@ -69,6 +74,24 @@ public class ProfileController {
             model.addAttribute("noPhoto", true);
         }
 
+        List<Like> likees = likeRepository.findLikesByLikerFk(unicornRepository.findByEmail(principal.getName()).getProfile());
+        List<Profile> likeesProfile = new ArrayList<>();
+        for(Like l : likees) {
+            likeesProfile.add(l.getLikeeFk());
+        }
+        List<Like> likers = likeRepository.findLikesByLikeeFk(unicornRepository.findByEmail(principal.getName()).getProfile());
+        List<Profile> likersProfile = new ArrayList<>();
+        for(Like l : likers) {
+            likersProfile.add(l.getLikerFk());
+        }
+
+        model.addAttribute("likees" , likeesProfile);
+        model.addAttribute("likers" , likersProfile);
+
+        if(likeRepository.findLikesByLikerFkAndLikeeFk(unicornRepository.findByEmail(principal.getName()).getProfile(), maybeProfile.get()) != null) {
+            model.addAttribute("isLiked", true);
+        } else model.addAttribute("isLiked", false);
+
         return "profile";
     }
 
@@ -110,4 +133,29 @@ public class ProfileController {
 
         return "redirect:/profile/" + profile.getId();
     }
+
+    @RequestMapping(value = "/likeProfile", method = RequestMethod.POST)
+    public String likeProfile(Model model, Principal principal, Long thisProfileId, Like like) {
+
+        like.setLikerFk(unicornRepository.findByEmail(principal.getName()).getProfile());
+        Optional<Profile> maybeProfile = profileRepository.findById(thisProfileId);
+
+        maybeProfile.ifPresent(like::setLikeeFk);
+
+        likeRepository.save(like);
+
+        return "redirect:/profile/" + maybeProfile.get().getId();
+    }
+
+    @RequestMapping(value = "/unlikeProfile", method = RequestMethod.POST)
+    public String unlikeProfile(Model model, Principal principal, Long thisProfileId, Like like) {
+
+        Optional<Profile> maybeProfile = profileRepository.findById(thisProfileId);
+
+        likeRepository.deleteLikeByLikerFkAndLikeeFk(unicornRepository.findByEmail(principal.getName()).getProfile(), maybeProfile.get());
+
+
+        return "redirect:/profile/" + maybeProfile.get().getId();
+    }
+
 }

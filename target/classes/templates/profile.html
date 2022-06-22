@@ -68,6 +68,20 @@
                 <p><img th:src="@{/img/zeit-uhr-weiss.png}" style="height: 25px;width: 25px;"> Zuletzt online: <em
                         data-th-text="${#temporals.format(profile.lastseen, 'dd.MM.yyyy, HH:mm')}"> </em></p>
             </div>
+            <div th:if="!${isOwnProfile}" class="col" style="color: white">
+                <div th:if="${isLiked}" style="text-align: right">
+                    <form th:action="@{/unlikeProfile}" method="post">
+                        <input type="text" name="thisProfileId" th:value="${profile.id}" hidden>
+                        <input class="btn btn-danger" type="submit" value="Ich mag dieses Einhorn nicht mehr"/>
+                    </form>
+                </div>
+                <div th:if="!${isLiked}" style="text-align: right">
+                    <form th:action="@{/likeProfile}" method="post">
+                        <input type="text" name="thisProfileId" th:value="${profile.id}" hidden>
+                        <input class="btn btn-success" type="submit" value="Ich mag dieses Einhorn"/>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <div th:if="${isOwnProfile}">
@@ -153,7 +167,7 @@
                       enctype="multipart/form-data">
                     <div style="margin-bottom: 5px;">
                         <label>Bild hochladen: </label>
-                        <input type="file" name="image" accept="image/png, image/jpeg" />
+                        <input type="file" name="image" accept="image/jpeg" />
                     </div>
                     <button type="submit" class="btn btn-light" style="margin-bottom: 5px;">Speichern</button>
                 </form>
@@ -181,6 +195,29 @@
             </div>
         </div>
     </div>
+    <div class="row" th:if="${isOwnProfile}">
+        <h2>Likes:</h2>
+        <div th:if="${isOwnProfile}" class="col">
+            <table style="color: black">
+                <tr>
+                    <td><h4>Einhörner, die du magst:</h4></td>
+                </tr>
+                <tr th:each="likeesProfile : ${likees}">
+                    <td><a th:href="@{/profile/{id}(id=${likeesProfile.id})}" style="color: black"><p th:text="${likeesProfile.nickname}"></p></a></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${isOwnProfile}" class="col">
+            <table style="color: black">
+                <tr>
+                    <td><h4>Einhörner, die dich mögen:</h4></td>
+                </tr>
+                <tr th:each="likersProfile : ${likers}">
+                    <td><a th:href="@{/profile/{id}(id=${likersProfile.id})}" style="color: black"><p th:text="${likersProfile.nickname}"></p></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -193,6 +230,7 @@
         crossorigin="anonymous"></script>
 <script th:inline="javascript">
     document.getElementById("birthdateInput").defaultValue =/*[[${profile.birthdate}]]*/ 'defaultanyvalue';
+    document.getElementById("birthdateLike").defaultValue =/*[[${profile.birthdate}]]*/ 'defaultanyvalue';
 </script>
 
 </body>

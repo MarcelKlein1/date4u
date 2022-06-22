@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.List;
 @Entity
 @Table(name = "profile")
 @Access(AccessType.FIELD)
-@Embeddable
 public class Profile {
 
     public static final int FEE = 1;

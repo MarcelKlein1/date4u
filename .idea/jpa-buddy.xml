@@ -2,5 +2,8 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="h2">
     <option name="defaultUnitInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="dbb12b60-c436-4a10-a51a-a9c1bd6cd378" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/com/tutego/date4u/entities" />
+    <option name="newEntityIdStrategy" />
   </component>
 </project>

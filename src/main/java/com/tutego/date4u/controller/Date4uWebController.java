@@ -1,6 +1,10 @@
 package com.tutego.date4u.controller;
 
 
+import com.tutego.date4u.entities.Like;
+import com.tutego.date4u.entities.Profile;
+
+import com.tutego.date4u.repositories.LikeRepository;
 import com.tutego.date4u.repositories.PhotoRepository;
 import com.tutego.date4u.repositories.ProfileRepository;
 
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -25,6 +31,9 @@ public class Date4uWebController {
 
     @Autowired
     PhotoRepository photoRepository;
+
+    @Autowired
+    LikeRepository likeRepository;
 
     //Startpage
     @RequestMapping("/*")
@@ -44,6 +53,25 @@ public class Date4uWebController {
             model.addAttribute("noUser", true);
         }
         return "index";
+    }
+
+    @RequestMapping("/likes")
+    public String likePage(Model model, Principal principal) {
+
+        List<Like> likees = likeRepository.findLikesByLikerFk(unicornRepository.findByEmail(principal.getName()).getProfile());
+        List<String> likeesName = new ArrayList<>();
+        for(Like l : likees) {
+            likeesName.add(l.getLikeeFk().getNickname());
+        }
+        List<Like> likers = likeRepository.findLikesByLikeeFk(unicornRepository.findByEmail(principal.getName()).getProfile());
+        List<String> likersName = new ArrayList<>();
+        for(Like l : likers) {
+            likersName.add(l.getLikerFk().getNickname());
+        }
+
+        model.addAttribute("likees" , likeesName);
+        model.addAttribute("likers" , likersName);
+        return "likes";
     }
 
 }
