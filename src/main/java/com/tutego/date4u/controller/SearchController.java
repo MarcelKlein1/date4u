@@ -1,5 +1,6 @@
 package com.tutego.date4u.controller;
 
+import com.tutego.date4u.entities.Photo;
 import com.tutego.date4u.entities.Profile;
 import com.tutego.date4u.repositories.PhotoRepository;
 import com.tutego.date4u.repositories.ProfileRepository;
@@ -51,6 +52,12 @@ public class SearchController {
             }
         }
 
+        List<Photo> profilePhotos = new ArrayList<>();
+        for(Profile profile : profileListWithMatchingAge) {
+            profilePhotos.add(photoRepository.findByProfilePhoto(profile));
+        }
+
+        model.addAttribute("photoResultList", profilePhotos);
         model.addAttribute("resultList", profileListWithMatchingAge);
 
         return "search";
