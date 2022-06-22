@@ -1,9 +1,5 @@
 package com.tutego.date4u.controller;
 
-
-import com.tutego.date4u.entities.Like;
-import com.tutego.date4u.entities.Profile;
-
 import com.tutego.date4u.repositories.LikeRepository;
 import com.tutego.date4u.repositories.PhotoRepository;
 import com.tutego.date4u.repositories.ProfileRepository;
@@ -15,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 @Controller

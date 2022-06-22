@@ -52,10 +52,7 @@ public class SearchController {
             }
         }
 
-        List<Photo> profilePhotos = new ArrayList<>();
-        for(Profile profile : profileListWithMatchingAge) {
-            profilePhotos.add(photoRepository.findByProfilePhoto(profile));
-        }
+        List<Photo> profilePhotos = profileListWithMatchingAge.stream().map(profile -> photoRepository.findByProfilePhoto(profile)).toList();
 
         model.addAttribute("photoResultList", profilePhotos);
         model.addAttribute("resultList", profileListWithMatchingAge);

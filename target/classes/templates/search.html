@@ -106,9 +106,11 @@
         </table>
     </form>
     <table class="table table-striped">
-        <tr th:each="element : ${resultList}" th:field="${element}">
-            <td>
+        <tr th:each="element, photoElement : ${resultList}" th:field="${element}">
+            <td style="text-align: center">
                 <a th:href="@{/profile/{id}(id=${element.id})}" style="color: white">
+                    <img th:src="@{/img/user/{picId}.jpg(picId=${photoResultList[__${photoElement .index}__].name})}" style="height: 50px;width: 50px;"
+                         class="rounded-circle">
                     <p th:text="${element.nickname}"></p></a>
             </td>
             <td>
