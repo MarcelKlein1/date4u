@@ -55,23 +55,4 @@ public class Date4uWebController {
         return "index";
     }
 
-    @RequestMapping("/likes")
-    public String likePage(Model model, Principal principal) {
-
-        List<Like> likees = likeRepository.findLikesByLikerFk(unicornRepository.findByEmail(principal.getName()).getProfile());
-        List<String> likeesName = new ArrayList<>();
-        for(Like l : likees) {
-            likeesName.add(l.getLikeeFk().getNickname());
-        }
-        List<Like> likers = likeRepository.findLikesByLikeeFk(unicornRepository.findByEmail(principal.getName()).getProfile());
-        List<String> likersName = new ArrayList<>();
-        for(Like l : likers) {
-            likersName.add(l.getLikerFk().getNickname());
-        }
-
-        model.addAttribute("likees" , likeesName);
-        model.addAttribute("likers" , likersName);
-        return "likes";
-    }
-
 }
