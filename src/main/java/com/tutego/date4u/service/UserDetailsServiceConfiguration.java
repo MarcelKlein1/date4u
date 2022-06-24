@@ -1,7 +1,8 @@
-package com.tutego.date4u.security;
+package com.tutego.date4u.service;
 
 import com.tutego.date4u.entities.Unicorn;
 import com.tutego.date4u.repositories.UnicornRepository;
+import com.tutego.date4u.service.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;

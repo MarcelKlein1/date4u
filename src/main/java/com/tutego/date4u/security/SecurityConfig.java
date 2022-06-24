@@ -1,5 +1,6 @@
 package com.tutego.date4u.security;
 
+import com.tutego.date4u.service.UserDetailsServiceConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;

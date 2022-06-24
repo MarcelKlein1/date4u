@@ -1,4 +1,4 @@
-package com.tutego.date4u.security;
+package com.tutego.date4u.service;
 
 import com.tutego.date4u.entities.Unicorn;
 import org.springframework.security.core.GrantedAuthority;
